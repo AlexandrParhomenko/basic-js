@@ -11,13 +11,18 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function encodeLine(str) {
-  let str1 = str.split('');
-  for (let i = 0; i < str1.length; i++) {
-    if (str1[i] === str1[i+1]) {
+  let count = 1,
+      newStr = '';
 
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === str[i + 1]) {
+      count++;
+    } else if (str[i] !== str[i + 1]) {
+      newStr += (count === 1) ? str[i] : count + str[i];
+      count = 1;
     }
   }
-  return res;
+  return newStr
 }
 
 module.exports = {
